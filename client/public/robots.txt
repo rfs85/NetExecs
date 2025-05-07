@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Disallow dynamic query paths with tracking parameters
+Disallow: /*?ref=*
+Disallow: /*&utm_*
+Disallow: /*?utm_*
+
+# XML Sitemap
+Sitemap: https://netexec-docs.example.com/sitemap.xml
