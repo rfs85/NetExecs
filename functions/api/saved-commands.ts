@@ -1,4 +1,4 @@
-import { storage } from '../storage';
+import { makeStorage } from '../storage';
 
 function mapId(doc) {
   if (!doc) return doc;
@@ -8,6 +8,7 @@ function mapId(doc) {
 
 export const onRequestGet = async (context) => {
   try {
+    const storage = makeStorage(context.env.DATABASE_URL);
     const commands = await storage.getSavedCommands();
     return new Response(JSON.stringify(commands.map(mapId)), {
       headers: { 'Content-Type': 'application/json' }
@@ -20,6 +21,7 @@ export const onRequestGet = async (context) => {
 export const onRequestPost = async (context) => {
   try {
     const body = await context.request.json();
+    const storage = makeStorage(context.env.DATABASE_URL);
     const savedCommand = await storage.createSavedCommand(body);
     return new Response(JSON.stringify(mapId(savedCommand)), {
       status: 201,

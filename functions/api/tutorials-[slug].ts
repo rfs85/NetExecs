@@ -1,4 +1,4 @@
-import { storage } from '../storage';
+import { makeStorage } from '../storage';
 
 function mapId(doc) {
   if (!doc) return doc;
@@ -9,6 +9,7 @@ function mapId(doc) {
 export const onRequestGet = async (context) => {
   try {
     const slug = context.params.slug;
+    const storage = makeStorage(context.env.DATABASE_URL);
     const tutorial = await storage.getTutorialBySlug(slug);
     if (!tutorial) {
       return new Response(JSON.stringify({ message: 'Tutorial not found' }), { status: 404 });

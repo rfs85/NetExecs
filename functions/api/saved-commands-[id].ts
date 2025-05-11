@@ -1,4 +1,4 @@
-import { storage } from '../storage';
+import { makeStorage } from '../storage';
 
 function mapId(doc) {
   if (!doc) return doc;
@@ -9,6 +9,7 @@ function mapId(doc) {
 export const onRequestDelete = async (context) => {
   try {
     const id = context.params.id;
+    const storage = makeStorage(context.env.DATABASE_URL);
     await storage.deleteSavedCommand(id);
     return new Response(null, { status: 204 });
   } catch {
