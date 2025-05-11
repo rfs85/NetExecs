@@ -3,35 +3,39 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import Toaster from "@/components/ui/toaster";
 import { Helmet } from "react-helmet";
-import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
-import ModulesPage from "@/pages/ModulesPage";
-import TutorialsPage from "@/pages/TutorialsPage";
-import ResourcesPage from "@/pages/ResourcesPage";
-import ModuleDetailPage from "@/pages/ModuleDetailPage";
-import TutorialDetailPage from "@/pages/TutorialDetailPage";
-import CommandGeneratorPage from "@/pages/CommandGeneratorPage";
-import TeamPage from "@/pages/TeamPage";
+import React, { Suspense } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "./components/ThemeProvider";
+
+const NotFound = React.lazy(() => import("@/pages/not-found"));
+const Home = React.lazy(() => import("@/pages/Home"));
+const ModulesPage = React.lazy(() => import("@/pages/ModulesPage"));
+const TutorialsPage = React.lazy(() => import("@/pages/TutorialsPage"));
+const ResourcesPage = React.lazy(() => import("@/pages/ResourcesPage"));
+const ModuleDetailPage = React.lazy(() => import("@/pages/ModuleDetailPage"));
+const TutorialDetailPage = React.lazy(() => import("@/pages/TutorialDetailPage"));
+const CommandGeneratorPage = React.lazy(() => import("@/pages/CommandGeneratorPage"));
+const TeamPage = React.lazy(() => import("@/pages/TeamPage"));
 
 function Router() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <div className="flex-grow">
-        <Switch>
-          <Route path="/" component={Home} />
-          <Route path="/command-generator" component={CommandGeneratorPage} />
-          <Route path="/modules" component={ModulesPage} />
-          <Route path="/modules/:protocol/:module" component={ModuleDetailPage} />
-          <Route path="/tutorials" component={TutorialsPage} />
-          <Route path="/tutorials/:slug" component={TutorialDetailPage} />
-          <Route path="/resources" component={ResourcesPage} />
-          <Route path="/team" component={TeamPage} />
-          <Route component={NotFound} />
-        </Switch>
+        <Suspense fallback={<div className="flex justify-center items-center h-full"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#10B981]"></div></div>}>
+          <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/command-generator" component={CommandGeneratorPage} />
+            <Route path="/modules" component={ModulesPage} />
+            <Route path="/modules/:protocol/:module" component={ModuleDetailPage} />
+            <Route path="/tutorials" component={TutorialsPage} />
+            <Route path="/tutorials/:slug" component={TutorialDetailPage} />
+            <Route path="/resources" component={ResourcesPage} />
+            <Route path="/team" component={TeamPage} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
       </div>
       <Footer />
     </div>

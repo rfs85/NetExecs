@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useLocation } from 'wouter';
+import { useLocation, Link } from 'wouter';
 import { useTheme } from '@/hooks/useTheme';
 import SearchDialog from './SearchDialog';
 
 const Header = () => {
-  const [location, navigate] = useLocation();
+  const [location] = useLocation();
   const { theme, setTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -25,9 +25,14 @@ const Header = () => {
     return location === path ? 'text-[#10B981] dark:text-[#10B981]' : '';
   };
 
-  const handleNavigate = (path: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    navigate(path);
+  const trackNavigate = (label: string) => {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: 'navigate',
+      category: 'Navigation',
+      action: 'Click',
+      label
+    });
   };
 
   return (
@@ -37,30 +42,32 @@ const Header = () => {
           <div className="text-[#10B981] text-2xl">
             <i className="fas fa-terminal"></i>
           </div>
-          <a href="/" onClick={handleNavigate('/')} className="text-xl md:text-2xl font-bold font-mono text-primary dark:text-white cursor-pointer">
-            Net<span className="text-[#10B981]">Exec</span>
-          </a>
+          <Link href="/">
+            <a className="text-xl md:text-2xl font-bold font-mono text-primary dark:text-white cursor-pointer" onClick={() => trackNavigate('Home')}>
+              Net<span className="text-[#10B981]">Exec</span>
+            </a>
+          </Link>
         </div>
 
         <nav className="hidden md:flex space-x-6">
-          <a href="/" onClick={handleNavigate('/')} className={`nav-link cursor-pointer ${isActive('/')}`}>
-            Home
-          </a>
-          <a href="/command-generator" onClick={handleNavigate('/command-generator')} className={`nav-link cursor-pointer ${isActive('/command-generator')}`}>
-            Command Generator
-          </a>
-          <a href="/modules" onClick={handleNavigate('/modules')} className={`nav-link cursor-pointer ${isActive('/modules')}`}>
-            Modules
-          </a>
-          <a href="/tutorials" onClick={handleNavigate('/tutorials')} className={`nav-link cursor-pointer ${isActive('/tutorials')}`}>
-            Tutorials
-          </a>
-          <a href="/resources" onClick={handleNavigate('/resources')} className={`nav-link cursor-pointer ${isActive('/resources')}`}>
-            Resources
-          </a>
-          <a href="/team" onClick={handleNavigate('/team')} className={`nav-link cursor-pointer ${isActive('/team')}`}>
-            Team
-          </a>
+          <Link href="/">
+            <a className={`nav-link cursor-pointer ${isActive('/')}`} onClick={() => trackNavigate('Home')}>Home</a>
+          </Link>
+          <Link href="/command-generator">
+            <a className={`nav-link cursor-pointer ${isActive('/command-generator')}`} onClick={() => trackNavigate('Command Generator')}>Command Generator</a>
+          </Link>
+          <Link href="/modules">
+            <a className={`nav-link cursor-pointer ${isActive('/modules')}`} onClick={() => trackNavigate('Modules')}>Modules</a>
+          </Link>
+          <Link href="/tutorials">
+            <a className={`nav-link cursor-pointer ${isActive('/tutorials')}`} onClick={() => trackNavigate('Tutorials')}>Tutorials</a>
+          </Link>
+          <Link href="/resources">
+            <a className={`nav-link cursor-pointer ${isActive('/resources')}`} onClick={() => trackNavigate('Resources')}>Resources</a>
+          </Link>
+          <Link href="/team">
+            <a className={`nav-link cursor-pointer ${isActive('/team')}`} onClick={() => trackNavigate('Team')}>Team</a>
+          </Link>
         </nav>
 
         <div className="flex items-center space-x-4">
@@ -97,24 +104,24 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white dark:bg-[#1F2937] border-t dark:border-gray-700">
           <div className="px-4 py-3 space-y-3">
-            <a href="/" onClick={handleNavigate('/')} className={`block nav-link cursor-pointer ${isActive('/')}`}>
-              Home
-            </a>
-            <a href="/command-generator" onClick={handleNavigate('/command-generator')} className={`block nav-link cursor-pointer ${isActive('/command-generator')}`}>
-              Command Generator
-            </a>
-            <a href="/modules" onClick={handleNavigate('/modules')} className={`block nav-link cursor-pointer ${isActive('/modules')}`}>
-              Modules
-            </a>
-            <a href="/tutorials" onClick={handleNavigate('/tutorials')} className={`block nav-link cursor-pointer ${isActive('/tutorials')}`}>
-              Tutorials
-            </a>
-            <a href="/resources" onClick={handleNavigate('/resources')} className={`block nav-link cursor-pointer ${isActive('/resources')}`}>
-              Resources
-            </a>
-            <a href="/team" onClick={handleNavigate('/team')} className={`block nav-link cursor-pointer ${isActive('/team')}`}>
-              Team
-            </a>
+            <Link href="/">
+              <a className={`block nav-link cursor-pointer ${isActive('/')}`} onClick={() => trackNavigate('Home')}>Home</a>
+            </Link>
+            <Link href="/command-generator">
+              <a className={`block nav-link cursor-pointer ${isActive('/command-generator')}`} onClick={() => trackNavigate('Command Generator')}>Command Generator</a>
+            </Link>
+            <Link href="/modules">
+              <a className={`block nav-link cursor-pointer ${isActive('/modules')}`} onClick={() => trackNavigate('Modules')}>Modules</a>
+            </Link>
+            <Link href="/tutorials">
+              <a className={`block nav-link cursor-pointer ${isActive('/tutorials')}`} onClick={() => trackNavigate('Tutorials')}>Tutorials</a>
+            </Link>
+            <Link href="/resources">
+              <a className={`block nav-link cursor-pointer ${isActive('/resources')}`} onClick={() => trackNavigate('Resources')}>Resources</a>
+            </Link>
+            <Link href="/team">
+              <a className={`block nav-link cursor-pointer ${isActive('/team')}`} onClick={() => trackNavigate('Team')}>Team</a>
+            </Link>
           </div>
         </div>
       )}

@@ -1,11 +1,16 @@
-import { useLocation } from 'wouter';
+import { useLocation, Link } from 'wouter';
 
 const Footer = () => {
   const [, navigate] = useLocation();
 
-  const handleNavigate = (path: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    navigate(path);
+  const trackNavigate = (label: string) => {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: 'navigate',
+      category: 'Navigation',
+      action: 'Click',
+      label
+    });
   };
 
   return (
@@ -29,11 +34,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-medium mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="/" onClick={handleNavigate('/')} className="text-gray-300 hover:text-[#10B981] text-sm">Home</a></li>
-              <li><a href="/command-generator" onClick={handleNavigate('/command-generator')} className="text-gray-300 hover:text-[#10B981] text-sm">Command Generator</a></li>
-              <li><a href="/modules" onClick={handleNavigate('/modules')} className="text-gray-300 hover:text-[#10B981] text-sm">Modules</a></li>
-              <li><a href="/tutorials" onClick={handleNavigate('/tutorials')} className="text-gray-300 hover:text-[#10B981] text-sm">Tutorials</a></li>
-              <li><a href="/resources" onClick={handleNavigate('/resources')} className="text-gray-300 hover:text-[#10B981] text-sm">Resources</a></li>
+              <li><Link href="/"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Home')}>Home</a></Link></li>
+              <li><Link href="/command-generator"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Command Generator')}>Command Generator</a></Link></li>
+              <li><Link href="/modules"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Modules')}>Modules</a></Link></li>
+              <li><Link href="/tutorials"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Tutorials')}>Tutorials</a></Link></li>
+              <li><Link href="/resources"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Resources')}>Resources</a></Link></li>
             </ul>
           </div>
           

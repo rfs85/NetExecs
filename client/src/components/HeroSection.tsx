@@ -1,10 +1,9 @@
-import { useLocation } from 'wouter';
+import { useLocation, Link } from 'wouter';
 
 const HeroSection = () => {
   const [, navigate] = useLocation();
 
-  const handleNavigate = (path: string, label: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
+  const trackNavigate = (label: string) => {
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({
       event: 'navigate',
@@ -12,7 +11,6 @@ const HeroSection = () => {
       action: 'Click',
       label
     });
-    navigate(path);
   };
 
   return (
@@ -26,20 +24,22 @@ const HeroSection = () => {
             Learn about NetExec (formerly CrackMapExec) - an open-source penetration testing tool that automates network exploitation and privilege escalation techniques.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <a 
-              href="/command-generator" 
-              onClick={handleNavigate('/command-generator', 'Command Generator')} 
-              className="bg-[#10B981] hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md text-center"
-            >
-              Try Command Generator
-            </a>
-            <a 
-              href="/modules" 
-              onClick={handleNavigate('/modules', 'Modules')} 
-              className="bg-transparent hover:bg-white/10 text-white border border-white font-medium py-2 px-6 rounded-md text-center"
-            >
-              Explore Modules
-            </a>
+            <Link href="/command-generator">
+              <a 
+                className="bg-[#10B981] hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md text-center"
+                onClick={() => trackNavigate('Command Generator')}
+              >
+                Try Command Generator
+              </a>
+            </Link>
+            <Link href="/modules">
+              <a 
+                className="bg-transparent hover:bg-white/10 text-white border border-white font-medium py-2 px-6 rounded-md text-center"
+                onClick={() => trackNavigate('Modules')}
+              >
+                Explore Modules
+              </a>
+            </Link>
           </div>
         </div>
         <div className="md:w-1/2 p-6 hidden md:block">
