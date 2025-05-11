@@ -27,6 +27,35 @@ wrangler pages deploy dist/public
 In the Cloudflare Pages dashboard, go to your project > Settings > Environment Variables and add:
 - `DATABASE_URL` (your database connection string)
 
+### 4. Bind Cloudflare R2 Bucket
+To use your R2 bucket named `R2_netexec` in Cloudflare Pages Functions:
+
+#### a. Create the R2 bucket in your Cloudflare dashboard (if not already created).
+
+#### b. Bind the R2 bucket in your project settings:
+- Go to your Pages project > **Settings** > **Functions** > **R2 bindings**
+- Add a binding:
+  - **Binding name:** `R2_netexec`
+  - **Bucket name:** `R2_netexec`
+
+#### c. Access the R2 bucket in your Functions:
+```js
+export const onRequestGet = async (context) => {
+  const r2 = context.env.R2_netexec; // R2 bucket binding
+  // Example: List objects
+  const list = await r2.list();
+  // ...
+};
+```
+
+#### d. Local Development with Wrangler
+Add the binding to your `wrangler.toml` (if using Wrangler locally):
+```toml
+[[r2_buckets]]
+binding = "R2_netexec"
+bucket_name = "R2_netexec"
+```
+
 ---
 
 ## 🛠️ Local Development
@@ -69,4 +98,5 @@ npm run dev
 - [Cloudflare Pages Docs](https://developers.cloudflare.com/pages/)
 - [Custom Domains](https://developers.cloudflare.com/pages/configuration/custom-domains/)
 - [Cloudflare Pages Functions](https://developers.cloudflare.com/pages/functions/)
+- [Cloudflare R2 Docs](https://developers.cloudflare.com/r2/)
 - [NetExec Tutorial](https://www.netexec-tutorial.com/) 
