@@ -237,7 +237,7 @@ const ModuleDetailPage = () => {
                     }}
                   >
                     <i className="fas fa-terminal mr-2"></i>
-                    Try this module in the Command Generator
+                    Generate NetExec Command for {currentModule.name} Module
                   </a>
                 </Link>
                 

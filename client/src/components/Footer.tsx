@@ -34,11 +34,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-medium mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link href="/"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Home')}>Home</a></Link></li>
-              <li><Link href="/command-generator"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Command Generator')}>Command Generator</a></Link></li>
-              <li><Link href="/modules"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Modules')}>Modules</a></Link></li>
-              <li><Link href="/tutorials"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Tutorials')}>Tutorials</a></Link></li>
-              <li><Link href="/resources"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Resources')}>Resources</a></Link></li>
+              <li><Link href="/"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Home')}>NetExec Network Security Documentation Home</a></Link></li>
+              <li><Link href="/command-generator"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Command Generator')}>NetExec Command Generator for Penetration Testing</a></Link></li>
+              <li><Link href="/modules"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Modules')}>NetExec Modules Documentation</a></Link></li>
+              <li><Link href="/tutorials"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Tutorials')}>NetExec Step-by-Step Tutorials</a></Link></li>
+              <li><Link href="/resources"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Resources')}>NetExec Security Resources and Tools</a></Link></li>
             </ul>
           </div>
           

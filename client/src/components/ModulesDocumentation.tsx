@@ -31,37 +31,39 @@ const ModulesDocumentation: React.FC<ModuleDocumentationProps> = ({
               <ul className="space-y-3">
                 {protocols.map(protocol => (
                   <li key={protocol.name}>
-                    <a 
-                      href="#" 
-                      className={`flex items-center ${selectedProtocol === protocol.name ? 'text-primary font-medium' : 'text-gray-700 dark:text-gray-200 hover:text-primary font-medium'}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setSelectedProtocol(protocol.name);
-                        if (filteredModules.length > 0) {
-                          setSelectedModule(filteredModules[0].name);
-                        }
-                      }}
-                    >
-                      {selectedProtocol === protocol.name && (
-                        <span className="w-1 h-6 bg-[#10B981] rounded-r-md mr-2"></span>
-                      )}
-                      <i className={`fas ${protocol.icon} mr-2 ${selectedProtocol === protocol.name ? 'text-[#10B981]' : ''}`}></i>
-                      {protocol.displayName}
-                    </a>
+                    <Link href={`/protocols/${protocol.name}`}>
+                      <a 
+                        className={`flex items-center ${selectedProtocol === protocol.name ? 'text-primary font-medium' : 'text-gray-700 dark:text-gray-200 hover:text-primary font-medium'}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setSelectedProtocol(protocol.name);
+                          if (filteredModules.length > 0) {
+                            setSelectedModule(filteredModules[0].name);
+                          }
+                        }}
+                      >
+                        {selectedProtocol === protocol.name && (
+                          <span className="w-1 h-6 bg-[#10B981] rounded-r-md mr-2"></span>
+                        )}
+                        <i className={`fas ${protocol.icon} mr-2 ${selectedProtocol === protocol.name ? 'text-[#10B981]' : ''}`}></i>
+                        {protocol.displayName}
+                      </a>
+                    </Link>
                     {selectedProtocol === protocol.name && (
                       <ul className="ml-7 mt-2 space-y-1">
                         {filteredModules.map(module => (
                           <li key={module.name}>
-                            <a 
-                              href="#" 
-                              className={`text-sm ${selectedModule === module.name ? 'text-[#10B981]' : 'text-gray-700 dark:text-gray-300 hover:text-[#10B981]'}`}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setSelectedModule(module.name);
-                              }}
-                            >
-                              {module.name}
-                            </a>
+                            <Link href={`/modules/${protocol.name}/${module.name}`}>
+                              <a 
+                                className={`text-sm ${selectedModule === module.name ? 'text-[#10B981]' : 'text-gray-700 dark:text-gray-300 hover:text-[#10B981]'}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setSelectedModule(module.name);
+                                }}
+                              >
+                                {module.name}
+                              </a>
+                            </Link>
                           </li>
                         ))}
                       </ul>

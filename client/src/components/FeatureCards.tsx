@@ -50,7 +50,9 @@ const FeatureCards = () => {
                     });
                   }}
                 >
-                  Try it now
+                  {feature.title === "Command Generator" && "Start Using the NetExec Command Generator"}
+                  {feature.title === "Modules Documentation" && "Explore NetExec Modules and Protocols"}
+                  {feature.title === "Step-by-Step Tutorials" && "View NetExec Security Tutorials and Guides"}
                   <i className="fas fa-arrow-right ml-2"></i>
                 </a>
               </Link>

@@ -27,7 +27,7 @@ export default function NotFound() {
           <div className="mt-6">
             <Link href="/">
               <a className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800">
-                <span>← Back to Homepage</span>
+                <span>← Back to NetExec Network Security Documentation Home</span>
               </a>
             </Link>
           </div>

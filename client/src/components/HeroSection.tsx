@@ -29,7 +29,7 @@ const HeroSection = () => {
                 className="bg-[#10B981] hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md text-center"
                 onClick={() => trackNavigate('Command Generator')}
               >
-                Try Command Generator
+                Generate NetExec Commands for Network Penetration Testing
               </a>
             </Link>
             <Link href="/modules">
@@ -37,7 +37,7 @@ const HeroSection = () => {
                 className="bg-transparent hover:bg-white/10 text-white border border-white font-medium py-2 px-6 rounded-md text-center"
                 onClick={() => trackNavigate('Modules')}
               >
-                Explore Modules
+                Browse All NetExec Modules and Protocols
               </a>
             </Link>
           </div>

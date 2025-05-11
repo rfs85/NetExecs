@@ -72,7 +72,7 @@ const TutorialDetailPage = () => {
         <div className="mb-6">
           <Link href="/tutorials">
             <a className="text-[#10B981] hover:text-green-600 inline-flex items-center">
-              <i className="fas fa-arrow-left mr-2"></i> Back to Tutorials
+              <i className="fas fa-arrow-left mr-2"></i> Back to NetExec Tutorials and Guides
             </a>
           </Link>
         </div>
@@ -168,7 +168,7 @@ const TutorialDetailPage = () => {
                       });
                     }}
                   >
-                    Try Command Generator
+                    Generate NetExec Commands for Network Penetration Testing
                   </a>
                 </Link>
                 <Link href="/modules">
@@ -184,7 +184,7 @@ const TutorialDetailPage = () => {
                       });
                     }}
                   >
-                    Explore Modules
+                    Explore All NetExec Modules and Protocols
                   </a>
                 </Link>
               </div>

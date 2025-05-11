@@ -51,22 +51,22 @@ const Header = () => {
 
         <nav className="hidden md:flex space-x-6">
           <Link href="/">
-            <a className={`nav-link cursor-pointer ${isActive('/')}`} onClick={() => trackNavigate('Home')}>Home</a>
+            <a className={`nav-link cursor-pointer ${isActive('/')}`} onClick={() => trackNavigate('Home')}>NetExec Network Security Documentation Home</a>
           </Link>
           <Link href="/command-generator">
-            <a className={`nav-link cursor-pointer ${isActive('/command-generator')}`} onClick={() => trackNavigate('Command Generator')}>Command Generator</a>
+            <a className={`nav-link cursor-pointer ${isActive('/command-generator')}`} onClick={() => trackNavigate('Command Generator')}>NetExec Command Generator for Penetration Testing</a>
           </Link>
           <Link href="/modules">
-            <a className={`nav-link cursor-pointer ${isActive('/modules')}`} onClick={() => trackNavigate('Modules')}>Modules</a>
+            <a className={`nav-link cursor-pointer ${isActive('/modules')}`} onClick={() => trackNavigate('Modules')}>NetExec Modules Documentation</a>
           </Link>
           <Link href="/tutorials">
-            <a className={`nav-link cursor-pointer ${isActive('/tutorials')}`} onClick={() => trackNavigate('Tutorials')}>Tutorials</a>
+            <a className={`nav-link cursor-pointer ${isActive('/tutorials')}`} onClick={() => trackNavigate('Tutorials')}>NetExec Step-by-Step Tutorials</a>
           </Link>
           <Link href="/resources">
-            <a className={`nav-link cursor-pointer ${isActive('/resources')}`} onClick={() => trackNavigate('Resources')}>Resources</a>
+            <a className={`nav-link cursor-pointer ${isActive('/resources')}`} onClick={() => trackNavigate('Resources')}>NetExec Security Resources and Tools</a>
           </Link>
           <Link href="/team">
-            <a className={`nav-link cursor-pointer ${isActive('/team')}`} onClick={() => trackNavigate('Team')}>Team</a>
+            <a className={`nav-link cursor-pointer ${isActive('/team')}`} onClick={() => trackNavigate('Team')}>Meet the NetExec Security Team</a>
           </Link>
         </nav>
 
@@ -105,22 +105,22 @@ const Header = () => {
         <div className="md:hidden bg-white dark:bg-[#1F2937] border-t dark:border-gray-700">
           <div className="px-4 py-3 space-y-3">
             <Link href="/">
-              <a className={`block nav-link cursor-pointer ${isActive('/')}`} onClick={() => trackNavigate('Home')}>Home</a>
+              <a className={`block nav-link cursor-pointer ${isActive('/')}`} onClick={() => trackNavigate('Home')}>NetExec Network Security Documentation Home</a>
             </Link>
             <Link href="/command-generator">
-              <a className={`block nav-link cursor-pointer ${isActive('/command-generator')}`} onClick={() => trackNavigate('Command Generator')}>Command Generator</a>
+              <a className={`block nav-link cursor-pointer ${isActive('/command-generator')}`} onClick={() => trackNavigate('Command Generator')}>NetExec Command Generator for Penetration Testing</a>
             </Link>
             <Link href="/modules">
-              <a className={`block nav-link cursor-pointer ${isActive('/modules')}`} onClick={() => trackNavigate('Modules')}>Modules</a>
+              <a className={`block nav-link cursor-pointer ${isActive('/modules')}`} onClick={() => trackNavigate('Modules')}>NetExec Modules Documentation</a>
             </Link>
             <Link href="/tutorials">
-              <a className={`block nav-link cursor-pointer ${isActive('/tutorials')}`} onClick={() => trackNavigate('Tutorials')}>Tutorials</a>
+              <a className={`block nav-link cursor-pointer ${isActive('/tutorials')}`} onClick={() => trackNavigate('Tutorials')}>NetExec Step-by-Step Tutorials</a>
             </Link>
             <Link href="/resources">
-              <a className={`block nav-link cursor-pointer ${isActive('/resources')}`} onClick={() => trackNavigate('Resources')}>Resources</a>
+              <a className={`block nav-link cursor-pointer ${isActive('/resources')}`} onClick={() => trackNavigate('Resources')}>NetExec Security Resources and Tools</a>
             </Link>
             <Link href="/team">
-              <a className={`block nav-link cursor-pointer ${isActive('/team')}`} onClick={() => trackNavigate('Team')}>Team</a>
+              <a className={`block nav-link cursor-pointer ${isActive('/team')}`} onClick={() => trackNavigate('Team')}>Meet the NetExec Security Team</a>
             </Link>
           </div>
         </div>
