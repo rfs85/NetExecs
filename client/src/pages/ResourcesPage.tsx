@@ -16,6 +16,16 @@ const ResourcesPage = () => {
           content="NetExec resources, CrackMapExec documentation, security tools, penetration testing resources, network security"
         />
         <link rel="canonical" href="https://www.netexec-tutorial.com/resources" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "NetExec Resources",
+            "description": "Access a curated collection of NetExec resources including official documentation, community support, related security tools, and security terminology.",
+            "url": "https://www.netexec-tutorial.com/resources",
+            "inLanguage": "en"
+          })}
+        </script>
       </Helmet>
       
       <main className="container mx-auto px-4 py-8">

@@ -17,6 +17,7 @@ const ModuleDetailPage = React.lazy(() => import("@/pages/ModuleDetailPage"));
 const TutorialDetailPage = React.lazy(() => import("@/pages/TutorialDetailPage"));
 const CommandGeneratorPage = React.lazy(() => import("@/pages/CommandGeneratorPage"));
 const TeamPage = React.lazy(() => import("@/pages/TeamPage"));
+const SitemapIndex = React.lazy(() => import("@/pages/SitemapIndex"));
 
 function Router() {
   return (
@@ -33,6 +34,7 @@ function Router() {
             <Route path="/tutorials/:slug" component={TutorialDetailPage} />
             <Route path="/resources" component={ResourcesPage} />
             <Route path="/team" component={TeamPage} />
+            <Route path="/sitemap" component={SitemapIndex} />
             <Route component={NotFound} />
           </Switch>
         </Suspense>

@@ -39,6 +39,7 @@ const Footer = () => {
               <li><Link href="/modules"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Modules')}>NetExec Modules Documentation</a></Link></li>
               <li><Link href="/tutorials"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Tutorials')}>NetExec Step-by-Step Tutorials</a></Link></li>
               <li><Link href="/resources"><a className="text-gray-300 hover:text-[#10B981] text-sm" onClick={() => trackNavigate('Resources')}>NetExec Security Resources and Tools</a></Link></li>
+              <li><Link href="/sitemap"><a className="text-gray-300 hover:text-[#10B981] text-sm">Sitemap & Content Index</a></Link></li>
             </ul>
           </div>
           

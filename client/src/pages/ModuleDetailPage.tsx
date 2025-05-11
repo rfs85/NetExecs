@@ -82,16 +82,18 @@ const ModuleDetailPage = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "TechArticle",
-            "headline": `${protocolDisplay} Module: ${currentModule.name}`,
+            "name": `${protocolDisplay} Module: ${currentModule.name}`,
             "description": currentModule.description,
+            "url": `https://netexec-docs.example.com/modules/${protocol}/${module}`,
             "keywords": `NetExec,${currentModule.name},${protocol},security,penetration testing`,
+            "author": {
+              "@type": "Organization",
+              "name": "NetExec"
+            },
+            "inLanguage": "en",
             "articleSection": "Module Documentation",
             "datePublished": "2025-04-01",
-            "dateModified": "2025-04-01",
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": `https://netexec-docs.example.com/modules/${protocol}/${module}`
-            }
+            "dateModified": "2025-04-01"
           })}
         </script>
       </Helmet>

@@ -7,4 +7,4 @@ Disallow: /*&utm_*
 Disallow: /*?utm_*
 
 # XML Sitemap
-Sitemap: https://netexec-docs.example.com/sitemap.xml
+Sitemap: /sitemap.xml

@@ -66,6 +66,24 @@ const TutorialDetailPage = () => {
           content={`NetExec, tutorial, ${tutorial.tags.join(', ')}, ${tutorial.level}, security training`}
         />
         <link rel="canonical" href={`https://www.netexec-tutorial.com/tutorials/${slug}`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": tutorial.title,
+            "description": tutorial.description,
+            "url": `https://www.netexec-tutorial.com/tutorials/${slug}`,
+            "keywords": tutorial.tags.join(", "),
+            "author": {
+              "@type": "Organization",
+              "name": "NetExec"
+            },
+            "inLanguage": "en",
+            "educationalLevel": tutorial.level,
+            "timeRequired": `PT${tutorial.readTime}M`,
+            "image": tutorial.image
+          })}
+        </script>
       </Helmet>
       
       <main className="container mx-auto px-4 py-8">

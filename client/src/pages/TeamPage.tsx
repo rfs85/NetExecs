@@ -21,6 +21,22 @@ export default function TeamPage() {
           content="Learn about the skilled professionals who develop and maintain NetExec, the powerful security assessment framework."
         />
         <link rel="canonical" href="https://netexec-docs.example.com/team" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "NetExec",
+            "url": "https://netexec-docs.example.com/team",
+            "member": teamMembers.map(member => ({
+              "@type": "Person",
+              "name": member.name,
+              "jobTitle": member.role,
+              "description": member.bio,
+              "image": member.image,
+              "sameAs": [member.githubUrl, member.twitterUrl, member.linkedinUrl].filter(Boolean)
+            }))
+          })}
+        </script>
       </Helmet>
 
       <section className="mb-10">
