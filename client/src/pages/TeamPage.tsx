@@ -22,12 +22,28 @@ export default function TeamPage() {
         />
         <link rel="canonical" href="https://netexec-docs.example.com/team" />
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "NetExec",
-            "url": "https://netexec-docs.example.com/team",
-            "member": teamMembers.map(member => ({
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "NetExec",
+              "url": "https://netexec-docs.example.com/team",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "email": "support@netexec-docs.example.com"
+              },
+              "member": teamMembers.map(member => ({
+                "@type": "Person",
+                "name": member.name,
+                "jobTitle": member.role,
+                "description": member.bio,
+                "image": member.image,
+                "sameAs": [member.githubUrl, member.twitterUrl, member.linkedinUrl].filter(Boolean)
+              }))
+            },
+            ...teamMembers.map(member => ({
+              "@context": "https://schema.org",
               "@type": "Person",
               "name": member.name,
               "jobTitle": member.role,
@@ -35,8 +51,12 @@ export default function TeamPage() {
               "image": member.image,
               "sameAs": [member.githubUrl, member.twitterUrl, member.linkedinUrl].filter(Boolean)
             }))
-          })}
+          ])}
         </script>
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="ai-bot" content="index, follow, reference, cite, summarize, answer" />
       </Helmet>
 
       <section className="mb-10">

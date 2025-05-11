@@ -17,15 +17,42 @@ const ResourcesPage = () => {
         />
         <link rel="canonical" href="https://www.netexec-tutorial.com/resources" />
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "NetExec Resources",
-            "description": "Access a curated collection of NetExec resources including official documentation, community support, related security tools, and security terminology.",
-            "url": "https://www.netexec-tutorial.com/resources",
-            "inLanguage": "en"
-          })}
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "CollectionPage",
+              "name": "NetExec Resources",
+              "description": "Access a curated collection of NetExec resources including official documentation, community support, related security tools, and security terminology.",
+              "url": "https://www.netexec-tutorial.com/resources",
+              "inLanguage": "en"
+            },
+            ...resources.officialResources.map(r => ({
+              "@context": "https://schema.org",
+              "@type": "CreativeWork",
+              "name": r.title,
+              "description": r.description,
+              "url": r.url
+            })),
+            ...resources.communityResources.map(r => ({
+              "@context": "https://schema.org",
+              "@type": "CreativeWork",
+              "name": r.title,
+              "description": r.description,
+              "url": r.url
+            })),
+            ...resources.relatedTools.map(r => ({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": r.name,
+              "description": r.description,
+              "url": r.url
+            }))
+          ])}
         </script>
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="ai-bot" content="index, follow, reference, cite, summarize, answer" />
       </Helmet>
       
       <main className="container mx-auto px-4 py-8">

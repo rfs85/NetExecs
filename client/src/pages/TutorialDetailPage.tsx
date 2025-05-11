@@ -53,6 +53,41 @@ const TutorialDetailPage = () => {
     );
   }
 
+  // Extract HowToStep and HowToSection from markdown content
+  function extractHowToSteps(content: string) {
+    const stepRegex = /^##\s+(.+)$/gm;
+    const steps = [];
+    let match;
+    let lastIndex = 0;
+    let lastTitle = null;
+    let matches = [];
+    while ((match = stepRegex.exec(content)) !== null) {
+      matches.push({ title: match[1], index: match.index });
+    }
+    if (matches.length === 0) {
+      // Fallback: single step
+      return [
+        {
+          '@type': 'HowToStep',
+          name: tutorial.title,
+          text: content.replace(/\n+/g, ' ').slice(0, 500)
+        }
+      ];
+    }
+    for (let i = 0; i < matches.length; i++) {
+      const start = matches[i].index;
+      const end = i + 1 < matches.length ? matches[i + 1].index : content.length;
+      const stepContent = content.slice(start, end).replace(/^##\s+.+\n/, '').replace(/\n+/g, ' ');
+      steps.push({
+        '@type': 'HowToStep',
+        name: matches[i].title,
+        text: stepContent.slice(0, 500)
+      });
+    }
+    return steps;
+  }
+  const howToSteps = extractHowToSteps(tutorial.content);
+
   return (
     <>
       <Helmet>
@@ -81,9 +116,14 @@ const TutorialDetailPage = () => {
             "inLanguage": "en",
             "educationalLevel": tutorial.level,
             "timeRequired": `PT${tutorial.readTime}M`,
-            "image": tutorial.image
+            "image": tutorial.image,
+            "step": howToSteps
           })}
         </script>
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="ai-bot" content="index, follow, reference, cite, summarize, answer" />
       </Helmet>
       
       <main className="container mx-auto px-4 py-8">

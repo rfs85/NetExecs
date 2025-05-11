@@ -27,45 +27,65 @@ const SitemapIndex = () => {
         <meta name="description" content="Browse all NetExec content: tutorials, modules, resources, and team. Organized by category for easy discovery." />
         <link rel="canonical" href="/sitemap" />
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SiteNavigationElement",
-            "name": "NetExec Sitemap & Content Index",
-            "url": "https://netexec-docs.example.com/sitemap",
-            "hasPart": [
-              ...tutorials.map(t => ({
-                "@type": "WebPage",
-                "name": t.title,
-                "url": `https://netexec-docs.example.com/tutorials/${t.slug}`
-              })),
-              ...modules.map(m => ({
-                "@type": "WebPage",
-                "name": m.name,
-                "url": `https://netexec-docs.example.com/modules/${m.protocol}/${m.name}`
-              })),
-              ...resources.officialResources.map(r => ({
-                "@type": "WebPage",
-                "name": r.title,
-                "url": r.url
-              })),
-              ...resources.communityResources.map(r => ({
-                "@type": "WebPage",
-                "name": r.title,
-                "url": r.url
-              })),
-              ...resources.relatedTools.map(r => ({
-                "@type": "WebPage",
-                "name": r.name,
-                "url": r.url
-              })),
-              {
-                "@type": "WebPage",
-                "name": "Team",
-                "url": "https://netexec-docs.example.com/team"
-              }
-            ]
-          })}
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "NetExec Documentation",
+              "url": "https://netexec-docs.example.com/"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://netexec-docs.example.com/" },
+                { "@type": "ListItem", "position": 2, "name": "Sitemap & Content Index", "item": "https://netexec-docs.example.com/sitemap" }
+              ]
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "SiteNavigationElement",
+              "name": "NetExec Sitemap & Content Index",
+              "url": "https://netexec-docs.example.com/sitemap",
+              "hasPart": [
+                ...tutorials.map(t => ({
+                  "@type": "WebPage",
+                  "name": t.title,
+                  "url": `https://netexec-docs.example.com/tutorials/${t.slug}`
+                })),
+                ...modules.map(m => ({
+                  "@type": "WebPage",
+                  "name": m.name,
+                  "url": `https://netexec-docs.example.com/modules/${m.protocol}/${m.name}`
+                })),
+                ...resources.officialResources.map(r => ({
+                  "@type": "WebPage",
+                  "name": r.title,
+                  "url": r.url
+                })),
+                ...resources.communityResources.map(r => ({
+                  "@type": "WebPage",
+                  "name": r.title,
+                  "url": r.url
+                })),
+                ...resources.relatedTools.map(r => ({
+                  "@type": "WebPage",
+                  "name": r.name,
+                  "url": r.url
+                })),
+                {
+                  "@type": "WebPage",
+                  "name": "Team",
+                  "url": "https://netexec-docs.example.com/team"
+                }
+              ]
+            }
+          ])}
         </script>
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="ai-bot" content="index, follow, reference, cite, summarize, answer" />
       </Helmet>
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Sitemap & Content Index</h1>

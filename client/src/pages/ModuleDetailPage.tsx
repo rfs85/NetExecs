@@ -79,23 +79,60 @@ const ModuleDetailPage = () => {
         <meta name="twitter:description" content={currentModule.description.substring(0, 200) + (currentModule.description.length > 200 ? '...' : '')} />
         <link rel="canonical" href={`/modules/${protocol}/${module}`} />
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "TechArticle",
-            "name": `${protocolDisplay} Module: ${currentModule.name}`,
-            "description": currentModule.description,
-            "url": `https://netexec-docs.example.com/modules/${protocol}/${module}`,
-            "keywords": `NetExec,${currentModule.name},${protocol},security,penetration testing`,
-            "author": {
-              "@type": "Organization",
-              "name": "NetExec"
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "TechArticle",
+              "name": `${protocolDisplay} Module: ${currentModule.name}`,
+              "description": currentModule.description,
+              "url": `https://netexec-docs.example.com/modules/${protocol}/${module}`,
+              "keywords": `NetExec,${currentModule.name},${protocol},security,penetration testing`,
+              "author": {
+                "@type": "Organization",
+                "name": "NetExec"
+              },
+              "inLanguage": "en",
+              "articleSection": "Module Documentation",
+              "datePublished": "2025-04-01",
+              "dateModified": "2025-04-01"
             },
-            "inLanguage": "en",
-            "articleSection": "Module Documentation",
-            "datePublished": "2025-04-01",
-            "dateModified": "2025-04-01"
-          })}
+            {
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": currentModule.name,
+              "applicationCategory": "SecurityApplication",
+              "operatingSystem": "Windows, Linux, macOS",
+              "softwareVersion": "latest",
+              "offers": {
+                "@type": "Offer",
+                "price": 0,
+                "priceCurrency": "USD"
+              },
+              "url": `https://netexec-docs.example.com/modules/${protocol}/${module}`,
+              "description": currentModule.description,
+              "softwareHelp": `https://netexec-docs.example.com/modules/${protocol}/${module}`,
+              "isAccessibleForFree": true,
+              "publisher": {
+                "@type": "Organization",
+                "name": "NetExec"
+              },
+              "sourceCodeRepository": "https://github.com/Pennyw0rth/NetExec"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "SoftwareSourceCode",
+              "name": currentModule.name,
+              "codeRepository": "https://github.com/Pennyw0rth/NetExec",
+              "programmingLanguage": "Python",
+              "license": "https://github.com/Pennyw0rth/NetExec/blob/main/LICENSE",
+              "url": `https://netexec-docs.example.com/modules/${protocol}/${module}`
+            }
+          ])}
         </script>
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="ai-bot" content="index, follow, reference, cite, summarize, answer" />
       </Helmet>
       
       <main className="container mx-auto px-4 py-8">
