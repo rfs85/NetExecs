@@ -58,6 +58,37 @@ bucket_name = "R2_netexec"
 
 ---
 
+## 🏷️ Google Tag Gateway Integration (Cloudflare)
+
+### How to Enable
+1. Go to your Cloudflare dashboard and select your domain (`www.netexec-tutorial.com`).
+2. Navigate to **Privacy & Compliance > Tag Gateway**.
+3. Enable Tag Gateway and add your Google Tag Manager (GTM) or Google Analytics (GA4) tag ID (e.g., `GTM-XXXXXXX` or `G-XXXXXXXXXX`).
+4. Save the configuration.
+
+### Remove Direct Google Tag Scripts
+- **Do NOT** include Google Tag Manager or Analytics `<script>` tags directly in your codebase. Cloudflare will inject the tag for you.
+
+### Custom Events & Data Layer
+- You can still push custom events to the data layer in your React code:
+  ```js
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'custom_event',
+    value: 123
+  });
+  ```
+
+### Verification
+- After deployment, use browser dev tools to check for the Google Tag (injected by Cloudflare).
+- Check your Google Analytics/Tag Manager dashboard for real-time hits.
+
+### References
+- [Cloudflare Tag Gateway Docs](https://developers.cloudflare.com/privacy-gateway/tag-gateway/)
+- [Cloudflare Blog: Introducing Tag Gateway](https://blog.cloudflare.com/tag-gateway/)
+
+---
+
 ## 🛠️ Local Development
 
 1. Copy `.env.example` to `.env` and fill in your local values:
@@ -99,4 +130,101 @@ npm run dev
 - [Custom Domains](https://developers.cloudflare.com/pages/configuration/custom-domains/)
 - [Cloudflare Pages Functions](https://developers.cloudflare.com/pages/functions/)
 - [Cloudflare R2 Docs](https://developers.cloudflare.com/r2/)
-- [NetExec Tutorial](https://www.netexec-tutorial.com/) 
+- [Cloudflare Tag Gateway Docs](https://developers.cloudflare.com/privacy-gateway/tag-gateway/)
+- [NetExec Tutorial](https://www.netexec-tutorial.com/)
+
+---
+
+## 📊 Event Tracking Examples (Google Tag Gateway)
+
+You can track user interactions throughout the app using Google Tag Gateway. Here are common event patterns:
+
+### Copy Command
+```js
+(window as any).dataLayer = (window as any).dataLayer || [];
+(window as any).dataLayer.push({
+  event: 'copy_command',
+  category: 'Command',
+  action: 'Copy',
+  label: commandText
+});
+```
+
+### Save Command
+```js
+(window as any).dataLayer = (window as any).dataLayer || [];
+(window as any).dataLayer.push({
+  event: 'save_command',
+  category: 'Command',
+  action: 'Save',
+  label: commandName
+});
+```
+
+### Navigation/Link Clicks
+```js
+(window as any).dataLayer = (window as any).dataLayer || [];
+(window as any).dataLayer.push({
+  event: 'navigate',
+  category: 'Navigation',
+  action: 'Click',
+  label: 'Command Generator' // or 'Modules', etc.
+});
+```
+
+### Read Tutorial
+```js
+(window as any).dataLayer = (window as any).dataLayer || [];
+(window as any).dataLayer.push({
+  event: 'read_tutorial',
+  category: 'Tutorial',
+  action: 'Read',
+  label: tutorialTitle
+});
+```
+
+### View Module
+```js
+(window as any).dataLayer = (window as any).dataLayer || [];
+(window as any).dataLayer.push({
+  event: 'view_module',
+  category: 'Module',
+  action: 'View',
+  label: moduleName
+});
+```
+
+### External Resource Clicks
+```js
+(window as any).dataLayer = (window as any).dataLayer || [];
+(window as any).dataLayer.push({
+  event: 'external_link',
+  category: 'Resource',
+  action: 'Click',
+  label: resourceName
+});
+```
+
+### Pagination
+```js
+(window as any).dataLayer = (window as any).dataLayer || [];
+(window as any).dataLayer.push({
+  event: 'paginate',
+  category: 'Pagination',
+  action: 'Page Change',
+  label: `Page ${pageNumber}`
+});
+```
+
+### Form Submissions
+```js
+(window as any).dataLayer = (window as any).dataLayer || [];
+(window as any).dataLayer.push({
+  event: 'form_submit',
+  category: 'Form',
+  action: 'Submit',
+  label: 'Contact Form'
+});
+```
+
+--- 

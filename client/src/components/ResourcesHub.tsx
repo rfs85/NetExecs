@@ -76,6 +76,15 @@ const ResourcesHub = () => {
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="flex items-start hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded-md"
+                    onClick={() => {
+                      (window as any).dataLayer = (window as any).dataLayer || [];
+                      (window as any).dataLayer.push({
+                        event: 'external_link',
+                        category: 'Resource',
+                        action: 'Click',
+                        label: tool.name
+                      });
+                    }}
                   >
                     <i className="fas fa-tools text-xl text-gray-700 dark:text-gray-300 mt-1 mr-3"></i>
                     <div>

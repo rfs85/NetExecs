@@ -36,6 +36,13 @@ const CommandGenerator = () => {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(commandPreview);
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: 'copy_command',
+      category: 'Command',
+      action: 'Copy',
+      label: commandPreview
+    });
     toast({
       title: "Copied!",
       description: "Command copied to clipboard",
@@ -283,9 +290,16 @@ const CommandGenerator = () => {
                     const name = prompt("Enter a name for this command:");
                     if (name) {
                       saveCommand(name);
+                      (window as any).dataLayer = (window as any).dataLayer || [];
+                      (window as any).dataLayer.push({
+                        event: 'save_command',
+                        category: 'Command',
+                        action: 'Save',
+                        label: name
+                      });
                       toast({
                         title: "Command saved",
-                        description: `Command "${name}" has been saved`,
+                        description: `Command \"${name}\" has been saved`,
                       });
                     }
                   }}

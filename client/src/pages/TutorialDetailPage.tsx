@@ -156,12 +156,34 @@ const TutorialDetailPage = () => {
               </h3>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/command-generator">
-                  <a className="bg-[#10B981] hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md text-center">
+                  <a 
+                    className="bg-[#10B981] hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md text-center"
+                    onClick={() => {
+                      (window as any).dataLayer = (window as any).dataLayer || [];
+                      (window as any).dataLayer.push({
+                        event: 'navigate',
+                        category: 'Tutorial',
+                        action: 'Try Command Generator',
+                        label: tutorial.title
+                      });
+                    }}
+                  >
                     Try Command Generator
                   </a>
                 </Link>
                 <Link href="/modules">
-                  <a className="bg-transparent hover:bg-primary/10 text-primary dark:text-white border border-primary dark:border-white font-medium py-2 px-6 rounded-md text-center">
+                  <a 
+                    className="bg-transparent hover:bg-primary/10 text-primary dark:text-white border border-primary dark:border-white font-medium py-2 px-6 rounded-md text-center"
+                    onClick={() => {
+                      (window as any).dataLayer = (window as any).dataLayer || [];
+                      (window as any).dataLayer.push({
+                        event: 'navigate',
+                        category: 'Tutorial',
+                        action: 'Explore Modules',
+                        label: tutorial.title
+                      });
+                    }}
+                  >
                     Explore Modules
                   </a>
                 </Link>

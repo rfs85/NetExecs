@@ -224,7 +224,18 @@ const ModuleDetailPage = () => {
             <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <Link href="/command-generator">
-                  <a className="text-[#10B981] hover:text-green-600 font-medium inline-flex items-center">
+                  <a 
+                    className="text-[#10B981] hover:text-green-600 font-medium inline-flex items-center"
+                    onClick={() => {
+                      (window as any).dataLayer = (window as any).dataLayer || [];
+                      (window as any).dataLayer.push({
+                        event: 'navigate',
+                        category: 'Module',
+                        action: 'Try in Command Generator',
+                        label: currentModule.name
+                      });
+                    }}
+                  >
                     <i className="fas fa-terminal mr-2"></i>
                     Try this module in the Command Generator
                   </a>
@@ -235,6 +246,15 @@ const ModuleDetailPage = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-300 hover:text-[#10B981] dark:hover:text-[#10B981] inline-flex items-center"
+                  onClick={() => {
+                    (window as any).dataLayer = (window as any).dataLayer || [];
+                    (window as any).dataLayer.push({
+                      event: 'external_link',
+                      category: 'Module',
+                      action: 'Official Documentation',
+                      label: currentModule.name
+                    });
+                  }}
                 >
                   <i className="fas fa-external-link-alt mr-2"></i>
                   Official Documentation

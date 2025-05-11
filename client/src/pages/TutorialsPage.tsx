@@ -136,7 +136,18 @@ const TutorialsPage = () => {
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-500 dark:text-gray-400">{tutorial.readTime} min read</span>
                     <Link href={`/tutorials/${tutorial.slug}`}>
-                      <a className="text-[#10B981] hover:text-green-600 font-medium">Read tutorial</a>
+                      <a 
+                        className="text-[#10B981] hover:text-green-600 font-medium"
+                        onClick={() => {
+                          (window as any).dataLayer = (window as any).dataLayer || [];
+                          (window as any).dataLayer.push({
+                            event: 'read_tutorial',
+                            category: 'Tutorial',
+                            action: 'Read',
+                            label: tutorial.title
+                          });
+                        }}
+                      >Read tutorial</a>
                     </Link>
                   </div>
                 </div>
@@ -155,7 +166,16 @@ const TutorialsPage = () => {
           <div className="flex justify-center mt-8">
             <nav className="flex items-center space-x-2">
               <button 
-                onClick={() => paginate(Math.max(1, currentPage - 1))}
+                onClick={() => {
+                  paginate(Math.max(1, currentPage - 1));
+                  (window as any).dataLayer = (window as any).dataLayer || [];
+                  (window as any).dataLayer.push({
+                    event: 'paginate',
+                    category: 'Pagination',
+                    action: 'Page Change',
+                    label: `Page ${Math.max(1, currentPage - 1)}`
+                  });
+                }}
                 disabled={currentPage === 1}
                 className={`px-3 py-1 rounded-md ${
                   currentPage === 1 
@@ -169,7 +189,16 @@ const TutorialsPage = () => {
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
                 <button
                   key={number}
-                  onClick={() => paginate(number)}
+                  onClick={() => {
+                    paginate(number);
+                    (window as any).dataLayer = (window as any).dataLayer || [];
+                    (window as any).dataLayer.push({
+                      event: 'paginate',
+                      category: 'Pagination',
+                      action: 'Page Change',
+                      label: `Page ${number}`
+                    });
+                  }}
                   className={`px-3 py-1 rounded-md ${
                     currentPage === number 
                       ? 'bg-primary text-white' 
@@ -181,7 +210,16 @@ const TutorialsPage = () => {
               ))}
               
               <button 
-                onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
+                onClick={() => {
+                  paginate(Math.min(totalPages, currentPage + 1));
+                  (window as any).dataLayer = (window as any).dataLayer || [];
+                  (window as any).dataLayer.push({
+                    event: 'paginate',
+                    category: 'Pagination',
+                    action: 'Page Change',
+                    label: `Page ${Math.min(totalPages, currentPage + 1)}`
+                  });
+                }}
                 disabled={currentPage === totalPages}
                 className={`px-3 py-1 rounded-md ${
                   currentPage === totalPages 

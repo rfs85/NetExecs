@@ -65,7 +65,16 @@ const TutorialsSection = () => {
                 <span className="text-sm text-gray-500 dark:text-gray-400">{tutorial.readTime} min read</span>
                 <a 
                   href={`/tutorials/${tutorial.slug}`} 
-                  onClick={handleNavigate(`/tutorials/${tutorial.slug}`)} 
+                  onClick={(e) => {
+                    handleNavigate(`/tutorials/${tutorial.slug}`)(e);
+                    (window as any).dataLayer = (window as any).dataLayer || [];
+                    (window as any).dataLayer.push({
+                      event: 'read_tutorial',
+                      category: 'Tutorial',
+                      action: 'Read',
+                      label: tutorial.title
+                    });
+                  }} 
                   className="text-[#10B981] hover:text-green-600 font-medium cursor-pointer"
                 >
                   Read tutorial
@@ -81,7 +90,16 @@ const TutorialsSection = () => {
         <div className="flex justify-center mt-8">
           <a 
             href="/tutorials" 
-            onClick={handleNavigate('/tutorials')}
+            onClick={(e) => {
+              handleNavigate('/tutorials')(e);
+              (window as any).dataLayer = (window as any).dataLayer || [];
+              (window as any).dataLayer.push({
+                event: 'navigate',
+                category: 'Tutorial',
+                action: 'View All',
+                label: 'View All Tutorials'
+              });
+            }}
             className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"
           >
             View All Tutorials

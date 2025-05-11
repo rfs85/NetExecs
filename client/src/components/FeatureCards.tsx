@@ -38,7 +38,18 @@ const FeatureCards = () => {
                 {feature.description}
               </p>
               <Link href={feature.link}>
-                <a className="text-[#10B981] hover:text-green-600 font-medium inline-flex items-center">
+                <a 
+                  className="text-[#10B981] hover:text-green-600 font-medium inline-flex items-center"
+                  onClick={() => {
+                    (window as any).dataLayer = (window as any).dataLayer || [];
+                    (window as any).dataLayer.push({
+                      event: 'navigate',
+                      category: 'Feature',
+                      action: 'Try',
+                      label: feature.title
+                    });
+                  }}
+                >
                   Try it now
                   <i className="fas fa-arrow-right ml-2"></i>
                 </a>

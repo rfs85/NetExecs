@@ -3,8 +3,15 @@ import { useLocation } from 'wouter';
 const HeroSection = () => {
   const [, navigate] = useLocation();
 
-  const handleNavigate = (path: string) => (e: React.MouseEvent) => {
+  const handleNavigate = (path: string, label: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: 'navigate',
+      category: 'Navigation',
+      action: 'Click',
+      label
+    });
     navigate(path);
   };
 
@@ -21,14 +28,14 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
               href="/command-generator" 
-              onClick={handleNavigate('/command-generator')} 
+              onClick={handleNavigate('/command-generator', 'Command Generator')} 
               className="bg-[#10B981] hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md text-center"
             >
               Try Command Generator
             </a>
             <a 
               href="/modules" 
-              onClick={handleNavigate('/modules')} 
+              onClick={handleNavigate('/modules', 'Modules')} 
               className="bg-transparent hover:bg-white/10 text-white border border-white font-medium py-2 px-6 rounded-md text-center"
             >
               Explore Modules
