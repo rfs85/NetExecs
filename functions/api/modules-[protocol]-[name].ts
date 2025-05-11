@@ -1,4 +1,4 @@
-import { storage } from '../storage';
+import { makeStorage } from '../storage';
 
 function mapId(doc) {
   if (!doc) return doc;
@@ -10,6 +10,7 @@ export const onRequestGet = async (context) => {
   try {
     const protocol = context.params.protocol;
     const name = context.params.name;
+    const storage = makeStorage(context.env.DATABASE_URL);
     const module = await storage.getModuleByName(protocol, name);
     if (!module) {
       return new Response(JSON.stringify({ message: 'Module not found' }), { status: 404 });

@@ -1,4 +1,4 @@
-import { storage } from '../storage';
+import { makeStorage } from '../storage';
 
 function mapId(doc) {
   if (!doc) return doc;
@@ -8,6 +8,7 @@ function mapId(doc) {
 
 export const onRequestGet = async (context) => {
   try {
+    const storage = makeStorage(context.env.DATABASE_URL);
     const protocols = await storage.getProtocols();
     return new Response(JSON.stringify(protocols.map(mapId)), {
       headers: { 'Content-Type': 'application/json' }
